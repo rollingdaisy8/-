@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f3efe7" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="오늘의 세 가지" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+  <title>오늘의 세 가지</title>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">DAILY NOTE</p>
+        <h1>오늘의 세 가지</h1>
+        <p id="today" class="date"></p>
+      </div>
+      <button id="historyBtn" class="text-button" type="button">지난 기록</button>
+    </header>
+
+    <section id="editorView" class="view active">
+      <form id="journalForm">
+        <article class="question-card">
+          <label for="emotion">
+            <span class="number">01</span>
+            나는 오늘 어떤 감정을 반복했나?
+          </label>
+          <textarea id="emotion" placeholder="오늘 자주 돌아왔던 감정을 적어보세요." rows="5"></textarea>
+        </article>
+
+        <article class="question-card">
+          <label for="fun">
+            <span class="number">02</span>
+            오늘 하루 재밌었던 일은?
+          </label>
+          <textarea id="fun" placeholder="작고 사소한 일이어도 좋아요." rows="5"></textarea>
+        </article>
+
+        <article class="question-card">
+          <label for="gratitude">
+            <span class="number">03</span>
+            오늘 하루 감사했던 일은?
+          </label>
+          <textarea id="gratitude" placeholder="오늘 고마웠던 순간을 적어보세요." rows="5"></textarea>
+        </article>
+
+        <button class="save-button" type="submit">오늘 기록 저장</button>
+        <p id="saveStatus" class="save-status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section id="historyView" class="view">
+      <div class="history-head">
+        <div>
+          <p class="eyebrow">ARCHIVE</p>
+          <h2>지난 기록</h2>
+        </div>
+        <button id="backBtn" class="text-button" type="button">오늘로 돌아가기</button>
+      </div>
+
+      <section class="backup-panel">
+        <div>
+          <p class="backup-title">기록 백업</p>
+          <p class="backup-help">전체 기록을 파일로 저장하거나, 예전에 저장한 백업 파일을 다시 불러올 수 있어요.</p>
+        </div>
+        <div class="backup-actions">
+          <button id="exportBtn" class="secondary-button" type="button">전체 기록 저장</button>
+          <button id="importBtn" class="secondary-button" type="button">백업 불러오기</button>
+          <input id="importFile" type="file" accept="application/json,.json" hidden />
+        </div>
+        <p id="backupStatus" class="save-status" aria-live="polite"></p>
+      </section>
+
+      <div id="historyList" class="history-list"></div>
+      <p id="emptyHistory" class="empty">아직 저장된 기록이 없어요.</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

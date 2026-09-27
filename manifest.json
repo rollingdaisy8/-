@@ -1,6 +1,6 @@
 {
-  "name": "오늘의 세 가지",
-  "short_name": "오늘의 세 가지",
+  "name": "행복 한 톨",
+  "short_name": "행복 한 톨",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f3efe7",

@@ -1,60 +1,99 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f3efe7">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Soyul의 행복 한 톨">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-192.png">
-<link rel="stylesheet" href="style.css">
-<title>행복 한 톨</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3efe7">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="행복 한 톨">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <title>행복 한 톨</title>
 </head>
 <body>
 <main class="app">
-<header class="topbar">
-  <div>
+  <header class="topbar">
     <p class="eyebrow">DAILY NOTE</p>
-    <h1>Soyul의 행복 한 톨</h1>
+    <h1>행복 한 톨</h1>
+  </header>
+
+  <section id="todayView" class="view active">
     <div class="date-edit">
       <label for="recordDate">기록 날짜</label>
       <input id="recordDate" type="date">
     </div>
-  </div>
-  <button id="historyBtn" class="text-button" type="button">지난 기록</button>
-</header>
 
-<section id="editorView" class="view active">
-<form id="journalForm">
-  <article class="question-card"><label for="q1"><span class="number">01</span>너는 오늘 어떤 감정을 반복했어?</label><textarea id="q1" rows="5"></textarea></article>
-  <article class="question-card"><label for="q2"><span class="number">02</span>오늘 하루 설레거나 재밌었던 일은 뭐였어?</label><textarea id="q2" rows="5"></textarea></article>
-  <article class="question-card"><label for="q3"><span class="number">03</span>오늘 하루 감사했던 일은 뭐였어?</label><textarea id="q3" rows="5"></textarea></article>
-  <article class="question-card"><label for="q4"><span class="number">04</span>상대를 위한 작은 생각이나 말, 행동했던 일 있어?</label><textarea id="q4" rows="5"></textarea></article>
-  <button class="save-button" type="submit">이 날짜의 기록 저장</button>
-  <p id="saveStatus" class="save-status"></p>
-</form>
-</section>
+    <div id="questions"></div>
 
-<section id="historyView" class="view">
-  <div class="history-head">
-    <div><p class="eyebrow">ARCHIVE</p><h2>지난 기록</h2></div>
-    <button id="backBtn" class="text-button" type="button">기록 화면으로</button>
-  </div>
-  <section class="backup-panel">
-    <p class="backup-title">기록 백업</p>
-    <p class="backup-help">내보내는 JSON에는 날짜와 1~4번 답변만 들어가요.</p>
-    <div class="backup-actions">
-      <button id="exportBtn" class="secondary-button" type="button">전체 기록 저장</button>
-      <button id="importBtn" class="secondary-button" type="button">백업 불러오기</button>
-      <input id="importFile" type="file" accept="application/json,.json" hidden>
-    </div>
-    <p id="backupStatus" class="save-status"></p>
+    <button id="saveBtn" class="save-button" type="button">이 날짜의 기록 저장</button>
+    <p id="saveStatus" class="save-status"></p>
+
+    <section class="random-card">
+      <div class="random-head">
+        <div>
+          <p class="eyebrow">A LITTLE GRAIN</p>
+          <h2>오늘 다시 만난 한 톨</h2>
+        </div>
+        <button id="randomAgainBtn" class="text-button" type="button">다른 한 톨</button>
+      </div>
+      <p id="randomDate" class="random-date"></p>
+      <p id="randomLabel" class="random-label"></p>
+      <p id="randomText" class="random-text">아직 꺼내볼 한 톨이 없어.</p>
+    </section>
   </section>
-  <div id="historyList" class="history-list"></div>
-  <p id="emptyHistory" class="empty">아직 저장된 기록이 없어.</p>
-</section>
+
+  <section id="storeView" class="view">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">HAPPINESS PANTRY</p>
+        <h2>행복 곳간</h2>
+      </div>
+    </div>
+
+    <div class="pantry-grid">
+      <button class="pantry-card" data-q="q1"><span>감정 기록</span><strong id="countQ1">0톨</strong></button>
+      <button class="pantry-card" data-q="q2"><span>설렘·재미 곳간</span><strong id="countQ2">0톨</strong></button>
+      <button class="pantry-card" data-q="q3"><span>감사 곳간</span><strong id="countQ3">0톨</strong></button>
+      <button class="pantry-card" data-q="q4"><span>마음 곳간</span><strong id="countQ4">0톨</strong></button>
+    </div>
+
+    <section id="pantryDetail" class="pantry-detail hidden">
+      <div class="pantry-detail-head">
+        <div><p class="eyebrow">COLLECTION</p><h3 id="pantryTitle"></h3></div>
+        <button id="closePantryBtn" class="text-button" type="button">닫기</button>
+      </div>
+      <div id="pantryList" class="pantry-list"></div>
+    </section>
+  </section>
+
+  <section id="historyView" class="view">
+    <div class="section-head">
+      <div><p class="eyebrow">ARCHIVE</p><h2>지난 기록</h2></div>
+    </div>
+
+    <section class="backup-panel">
+      <p class="backup-title">기록 백업</p>
+      <p class="backup-help">내보내는 JSON에는 날짜와 1~4번의 한 톨 목록만 들어가.</p>
+      <div class="backup-actions">
+        <button id="exportBtn" class="secondary-button" type="button">전체 기록 저장</button>
+        <button id="importBtn" class="secondary-button" type="button">백업 불러오기</button>
+        <input id="importFile" type="file" accept="application/json,.json" hidden>
+      </div>
+      <p id="backupStatus" class="save-status"></p>
+    </section>
+
+    <div id="historyList" class="history-list"></div>
+    <p id="emptyHistory" class="empty">아직 저장된 기록이 없어.</p>
+  </section>
 </main>
+
+<nav class="bottom-nav">
+  <button class="nav-btn active" data-view="todayView">오늘</button>
+  <button class="nav-btn" data-view="storeView">행복 곳간</button>
+  <button class="nav-btn" data-view="historyView">기록</button>
+</nav>
+
 <script src="app.js"></script>
 </body>
 </html>

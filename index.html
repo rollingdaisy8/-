@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f3efe7">
+  <meta name="theme-color" content="#170f16">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="행복 한 톨">
   <link rel="manifest" href="manifest.json">
@@ -15,7 +15,7 @@
 <main class="app">
   <header class="topbar">
     <p class="eyebrow">DAILY NOTE</p>
-    <h1>행복 한 톨</h1>
+    <h1>행복 한 톨<span class="grain-mark" aria-hidden="true"></span></h1>
   </header>
 
   <section id="todayView" class="view active">
@@ -26,7 +26,7 @@
 
     <div id="questions"></div>
 
-    <button id="saveBtn" class="save-button" type="button">이 날짜의 기록 저장</button>
+    <button id="saveBtn" class="save-button" type="button">저장</button>
     <p id="saveStatus" class="save-status"></p>
 
     <section class="random-card">
@@ -46,16 +46,16 @@
   <section id="storeView" class="view">
     <div class="section-head">
       <div>
-        <p class="eyebrow">HAPPINESS PANTRY</p>
-        <h2>행복 곳간</h2>
+        <p class="eyebrow">COLLECTION</p>
+        <h2>행복곳간</h2>
       </div>
     </div>
 
     <div class="pantry-grid">
-      <button class="pantry-card" data-q="q1"><span>감정 기록</span><strong id="countQ1">0톨</strong></button>
-      <button class="pantry-card" data-q="q2"><span>설렘·재미 곳간</span><strong id="countQ2">0톨</strong></button>
-      <button class="pantry-card" data-q="q3"><span>감사 곳간</span><strong id="countQ3">0톨</strong></button>
-      <button class="pantry-card" data-q="q4"><span>마음 곳간</span><strong id="countQ4">0톨</strong></button>
+      <button class="pantry-card category-card card-emotion" data-q="q1"><span>감정</span><strong id="countQ1">0톨</strong></button>
+      <button class="pantry-card category-card card-excitement" data-q="q2"><span>설렘·재미</span><strong id="countQ2">0톨</strong></button>
+      <button class="pantry-card category-card card-gratitude" data-q="q3"><span>감사</span><strong id="countQ3">0톨</strong></button>
+      <button class="pantry-card category-card card-heart" data-q="q4"><span>마음</span><strong id="countQ4">0톨</strong></button>
     </div>
 
     <section id="pantryDetail" class="pantry-detail hidden">
@@ -90,7 +90,7 @@
 
 <nav class="bottom-nav">
   <button class="nav-btn active" data-view="todayView">오늘</button>
-  <button class="nav-btn" data-view="storeView">행복 곳간</button>
+  <button class="nav-btn" data-view="storeView">행복곳간</button>
   <button class="nav-btn" data-view="historyView">기록</button>
 </nav>
 

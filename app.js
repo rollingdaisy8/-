@@ -1,10 +1,10 @@
 const STORAGE_KEY="three-things-journal-v1";
 
 const questions=[
-  {q:"q1",n:"01",text:"너는 오늘 어떤 감정을 반복했어?",pantry:"감정 기록",label:"반복한 감정"},
-  {q:"q2",n:"02",text:"오늘 하루 설레거나 재밌었던 일은 뭐였어?",pantry:"설렘·재미 곳간",label:"설레거나 재밌었던 일"},
-  {q:"q3",n:"03",text:"오늘 하루 감사했던 일은 뭐였어?",pantry:"감사 곳간",label:"감사했던 일"},
-  {q:"q4",n:"04",text:"상대를 위한 작은 생각이나 말, 행동했던 일 있어?",pantry:"마음 곳간",label:"상대를 위한 작은 생각·말·행동"}
+  {q:"q1",n:"01",text:"너는 오늘 어떤 감정을 반복했어?",pantry:"감정",label:"반복한 감정"},
+  {q:"q2",n:"02",text:"오늘 하루 설레거나 재밌었던 일은 뭐였어?",pantry:"설렘·재미",label:"설레거나 재밌었던 일"},
+  {q:"q3",n:"03",text:"오늘 하루 감사했던 일은 뭐였어?",pantry:"감사",label:"감사했던 일"},
+  {q:"q4",n:"04",text:"상대를 위한 작은 생각이나 말, 행동했던 일 있어?",pantry:"마음",label:"상대를 위한 작은 생각·말·행동"}
 ];
 
 let draft={q1:[],q2:[],q3:[],q4:[]};
@@ -64,10 +64,9 @@ function buildQuestionUI(){
     card.innerHTML=`
       <div class="question-title"><span class="number">${item.n}</span>${item.text}</div>
       <div class="grain-entry">
-        <input id="input-${item.q}" class="grain-input" type="text" placeholder="한 톨을 적고 Enter">
-        <button class="add-button" type="button" data-add="${item.q}">추가</button>
+        <input id="input-${item.q}" class="grain-input" type="text" aria-label="${item.text}">
+        <button class="add-button" type="button" data-add="${item.q}" aria-label="한 톨 추가">+</button>
       </div>
-      <p class="hint">Enter를 누르면 한 톨 카드로 바뀌어.</p>
       <div id="list-${item.q}" class="grain-list"></div>
     `;
     wrap.appendChild(card);
